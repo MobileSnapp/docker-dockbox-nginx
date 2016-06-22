@@ -8,14 +8,18 @@ FROM nginx:latest
 MAINTAINER MobileSnapp <support@mobilesnapp.com>
 
 # Add docker config
-COPY nginx.conf /etc/nginx/nginx.conf
+ADD nginx.conf /etc/nginx/
+
+# Add configuration for default site
+#ADD local.conf /etc/nginx/sites-available/
+
+# Add configuration for custom site [Comment it for default site]
+ADD site.conf /etc/nginx/sites-available/
 
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
 
-# Grant Permissions
-RUN chown -R www-data:www-data /var/www/site/public
-RUN chmod 755 /var/www
+RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled
 
 # Assign working directory
 WORKDIR /var/www/site/
