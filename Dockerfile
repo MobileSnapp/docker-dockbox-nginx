@@ -11,7 +11,7 @@ MAINTAINER MobileSnapp <support@mobilesnapp.com>
 ADD nginx.conf /etc/nginx/
 
 # Define mountable directories.
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
+#VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
 
 # Add configuration for default site
 #ADD local.conf /etc/nginx/sites-available/
